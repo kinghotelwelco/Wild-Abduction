@@ -90,7 +90,7 @@ export const getPrice = async () => {
 }
 
 
-export const presaleMintandStake = async (mintAmount, hasOGminted) => {
+export const presaleMintandStake = async (mintAmount) => {
   if (!window.ethereum.selectedAddress) {
     return {
       success: false,
@@ -116,44 +116,7 @@ export const presaleMintandStake = async (mintAmount, hasOGminted) => {
     'latest'
   )
 
-  const og = getOG()
-
-  if (og && !hasOGminted) {// Set up our Ethereum transaction
-  const tx = {
-    to: config.contractAddressWaGGame,
-    from: window.ethereum.selectedAddress,
-    value: parseInt(
-      web3.utils.toWei(String((config.price * mintAmount)- 0.025), 'ether')
-    ).toString(16), // hex
-    data: gameContract.methods
-      .mint(mintAmount,true)
-      .encodeABI(),
-    nonce: nonce.toString(16)
-  }
-
-
-  try {
-    const txHash = await window.ethereum.request({
-      method: 'eth_sendTransaction',
-      params: [tx]
-    })
-
-    return {
-      success: true,
-      status: (
-        <a href={`https://rinkeby.etherscan.io/tx/${txHash}`} target="_blank">
-          <p>✅ Check out your transaction on Etherscan:</p>
-          <p>{`https://rinkeby.etherscan.io/tx/${txHash}`}</p>
-        </a>
-      )
-    }
-  } catch (error) {
-    return {
-      success: false,
-      status: '😞 Smth went wrong:' + error.message
-    }
-  }
-} else {
+  
   const tx = {
     to: config.contractAddressWaGGame,
     from: window.ethereum.selectedAddress,
@@ -189,9 +152,9 @@ export const presaleMintandStake = async (mintAmount, hasOGminted) => {
     }
   }
 }
-}
 
-export const presaleMint = async (mintAmount, hasOGminted) => {
+
+export const presaleMint = async (mintAmount) => {
   if (!window.ethereum.selectedAddress) {
     return {
       success: false,
@@ -217,44 +180,9 @@ export const presaleMint = async (mintAmount, hasOGminted) => {
     'latest'
   )
 
-  const og = getOG()
+
   
-  if (og && !hasOGminted) {// Set up our Ethereum transaction
-  const tx = {
-    to: config.contractAddressWaGGame,
-    from: window.ethereum.selectedAddress,
-    value: parseInt(
-      web3.utils.toWei(String((config.price * mintAmount) - 0.025), 'ether')
-    ).toString(16), // hex
-    data: gameContract.methods
-      .mint(mintAmount,false)
-      .encodeABI(),
-    nonce: nonce.toString(16)
-  }
-
-
-  try {
-    const txHash = await window.ethereum.request({
-      method: 'eth_sendTransaction',
-      params: [tx]
-    })
-
-    return {
-      success: true,
-      status: (
-        <a href={`https://rinkeby.etherscan.io/tx/${txHash}`} target="_blank">
-          <p>✅ Check out your transaction on Etherscan:</p>
-          <p>{`https://rinkeby.etherscan.io/tx/${txHash}`}</p>
-        </a>
-      )
-    }
-  } catch (error) {
-    return {
-      success: false,
-      status: '😞 Smth went wrong:' + error.message
-    }
-  }
-} else {
+  
   const tx = {
     to: config.contractAddressWaGGame,
     from: window.ethereum.selectedAddress,
@@ -289,7 +217,7 @@ export const presaleMint = async (mintAmount, hasOGminted) => {
       status: '😞 Smth went wrong:' + error.message
     }
   }
-}
+
 }
 
 export const publicMintandStake = async (mintAmount) => {

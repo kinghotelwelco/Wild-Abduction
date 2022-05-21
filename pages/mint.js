@@ -26,7 +26,7 @@ import {
   ClaimItandUnstake,
   getUnstakedNFTs,
   Approve,
-  getOG
+  
 } from '../utils/interact'
 import { render } from 'react-dom'
 
@@ -55,29 +55,17 @@ export default function Mint() {
   const [unclaimedbalance, setUnclaimedBalance] = useState(0)
   const [unstakedNFTs, setUnstakedNFTs] = useState(0)
   const [ogminted, setOgMinted] = useState(false)
-  const [isOg, setIsOg] = useState(false)
+ 
 
 
 
   const determinemintprice = () => {
-    if(isOg) {
-      if(ogminted) {
-      return Number.parseFloat(config.price * mintAmount).toFixed(
-        3
-      ) + ' ETH'.toString()
-      
-    } else {
-      return Number.parseFloat((config.price * mintAmount) - 0.025).toFixed(
-        3
-      ) + ' ETH'.toString()
-      
-    }
-  } else {
+    
     return Number.parseFloat(config.price * mintAmount).toFixed(
       3
     ) + ' ETH'.toString()
     
-  }
+  
 }
     
     useEffect(() => {
@@ -123,7 +111,7 @@ export default function Mint() {
         setLandEarned(await getLandEarned())
         setMaxSupply(4444)
         setTotalMinted(await getTotalMinted())
-        setIsOg(await getOG())
+        
         
         
   
@@ -181,9 +169,7 @@ export default function Mint() {
   
       setIsMinting(false)
 
-      if(isOg) {
-        setOgMinted(true)
-      }
+
     }
 
     const presaleMintHandler = async () => {
