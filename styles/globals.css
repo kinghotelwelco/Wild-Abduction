@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Coiny&family=Noto+Sans+JP&family=Open+Sans:wght@300&family=Press+Start+2P&family=Whisper&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.fast-draw-style {
+  font-size:x-large;
+  margin-left: 50px;
+}
+
+    .vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 100%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+:root {
+  --font-family: 'Press Start 2P', sans-serif;
+  --clr-light: #f0e9e9;
+  --clr-purple: #9b5de5;
+  --clr-pink: #f15bb5;
+  --clr-yellow: #fee440;
+  --clr-blue: #00bbf9;
+  --clr-green: #00f5d4;
+  --clr-selection-bg: #cb3d92;
+  --clr-selection-text: #f4f0f0;
+  --clr-background: #06070a;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-family);
+  background: var(--clr-background);
+  cursor: url('/images/cursor.png'), auto;
+}
+
+::selection {
+  background: var(--clr-selection-bg);
+  color: var(--clr-selection-text);
+}
+
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  border: 1px solid black;
+  border-radius: 10px;
+  z-index: 10;
+  background-color: white;
+  width: 500px;
+  max-width: 80%;
+}
+
+.modal.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-header {
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+
+.modal-header .title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.modal-header .close-button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.modal-body {
+  padding: 10px 15px;
+}
+
+#overlay {
+  position: fixed;
+  opacity: 0;
+  transition: 200ms ease-in-out;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .5);
+  pointer-events: none;
+}
+
+#overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}

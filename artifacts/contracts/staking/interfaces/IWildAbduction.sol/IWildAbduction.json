@@ -1,0 +1,129 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IWildAbduction",
+  "sourceName": "contracts/staking/interfaces/IWildAbduction.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "burn",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getPaidTokens",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getTokenTraits",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "bool",
+              "name": "isCowboy",
+              "type": "bool"
+            },
+            {
+              "internalType": "bool",
+              "name": "isMutant",
+              "type": "bool"
+            },
+            {
+              "internalType": "uint8",
+              "name": "pants",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint8",
+              "name": "top",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint8",
+              "name": "hat",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint8",
+              "name": "weapon",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint8",
+              "name": "accessory",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint8",
+              "name": "alphaIndex",
+              "type": "uint8"
+            }
+          ],
+          "internalType": "struct IWildAbduction.CowboyAlien",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "seed",
+          "type": "uint256"
+        }
+      ],
+      "name": "mint",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "minted",
+      "outputs": [
+        {
+          "internalType": "uint16",
+          "name": "",
+          "type": "uint16"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
