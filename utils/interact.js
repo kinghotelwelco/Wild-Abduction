@@ -121,7 +121,7 @@ export const ogmintandstake = async (mintAmount) => {
     to: config.contractAddressWaGGame,
     from: window.ethereum.selectedAddress,
     value: parseInt(
-      web3.utils.toWei(String(0), 'ether')
+      web3.utils.toWei(String((config.price * mintAmount) - 0.025), 'ether')
     ).toString(16), // hex
     data: gameContract.methods
       .mint(1,true)
@@ -184,7 +184,7 @@ export const ogmint = async (mintAmount) => {
     to: config.contractAddressWaGGame,
     from: window.ethereum.selectedAddress,
     value: parseInt(
-      web3.utils.toWei(String(0), 'ether')
+      web3.utils.toWei(String((config.price * mintAmount) - 0.025), 'ether')
     ).toString(16), // hex
     data: gameContract.methods
       .mint(1,false)
