@@ -98,18 +98,18 @@ export const presaleMintandStake = async (mintAmount, hasOGminted) => {
     }
   }
 
-  const leaf = keccak256(window.ethereum.selectedAddress)
-  const proof = merkleTree.getHexProof(leaf)
+ // const leaf = keccak256(window.ethereum.selectedAddress)
+  //const proof = merkleTree.getHexProof(leaf)
 
   // Verify Merkle Proof
-  const isValid = merkleTree.verify(proof, leaf, root)
+ // const isValid = merkleTree.verify(proof, leaf, root)
 
-  if (!isValid) {
-    return {
-      success: false,
-      status: 'Invalid Merkle Proof - You are not on the whitelist'
-    }
-  }
+////  if (!isValid) {
+  //  return {
+ //     success: false,
+  //    status: 'Invalid Merkle Proof - You are not on the whitelist'
+  //  }
+  //}
 
   const nonce = await web3.eth.getTransactionCount(
     window.ethereum.selectedAddress,
@@ -199,18 +199,18 @@ export const presaleMint = async (mintAmount, hasOGminted) => {
     }
   }
 
-  const leaf = keccak256(window.ethereum.selectedAddress)
-  const proof = merkleTree.getHexProof(leaf)
+ // const leaf = keccak256(window.ethereum.selectedAddress)
+ // const proof = merkleTree.getHexProof(leaf)
 
   // Verify Merkle Proof
-  const isValid = merkleTree.verify(proof, leaf, root)
+  //const isValid = merkleTree.verify(proof, leaf, root)
 
-  if (!isValid) {
-    return {
-      success: false,
-      status: 'Invalid Merkle Proof - You are not on the whitelist'
-    }
-  }
+ // if (!isValid) {
+  //  return {
+   //   success: false,
+   //   status: 'Invalid Merkle Proof - You are not on the whitelist'
+   // }
+ // }
 
   const nonce = await web3.eth.getTransactionCount(
     window.ethereum.selectedAddress,
