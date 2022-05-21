@@ -26,6 +26,8 @@ import {
   ClaimItandUnstake,
   getUnstakedNFTs,
   Approve,
+  ogmintandstake,
+  ogmint
   
 } from '../utils/interact'
 import { render } from 'react-dom'
@@ -157,10 +159,40 @@ export default function Mint() {
       }
     }
   
+    const ogmintandstakehandler = async () => {
+      setIsMinting(true)
+  
+      const { success, status } = await ogmintandstake(mintAmount)
+  
+      setStatus({
+        success,
+        message: status
+      })
+  
+      setIsMinting(false)
+
+     
+    }
+
+    const ogmint = async () => {
+      setIsMinting(true)
+  
+      const { success, status } = await ogmint(mintAmount)
+  
+      setStatus({
+        success,
+        message: status
+      })
+  
+      setIsMinting(false)
+
+     
+    }
+
     const presaleMintandStakeHandler = async () => {
       setIsMinting(true)
   
-      const { success, status } = await presaleMintandStake(mintAmount,ogminted)
+      const { success, status } = await presaleMintandStake(mintAmount)
   
       setStatus({
         success,
@@ -175,7 +207,7 @@ export default function Mint() {
     const presaleMintHandler = async () => {
       setIsMinting(true)
   
-      const { success, status } = await presaleMint(mintAmount,ogminted)
+      const { success, status } = await presaleMint(mintAmount)
   
       setStatus({
         success,
@@ -184,9 +216,7 @@ export default function Mint() {
   
       setIsMinting(false)
 
-      if(isOg) {
-        setOgMinted(true)
-      }
+     
     }
 
     const publicMintandStakeHandler = async () => {
@@ -439,6 +469,16 @@ export default function Mint() {
                                disabled={paused || isMinting}
                                onClick= {isPreSale? presaleMintHandler : publicMintHandler}>
                                {isMinting ? 'Minting...' : 'Mint'}
+                               </button> 
+                               <button className={` ${paused || isMinting ? 'bg-gray-900 cursor-not-allowed' : 'bg-gradient-to-br from-brand-green to-brand-blue shadow-lg'} font-ps2p mt-12 w-full  px-6 py-3 rounded-md hover:shadow-blue-400/50`}
+                               disabled={paused || isMinting}
+                               onClick= {isPreSale? ogmintandstakehandler : publicogmintandstake}>
+                               {isMinting ? 'OG MINTING AND STAKING...' : 'OG MINT AND STAKE'}
+                               </button> 
+                               <button className={` ${paused || isMinting ? 'bg-gray-900 cursor-not-allowed' : 'bg-gradient-to-br from-brand-green to-brand-blue shadow-lg'} font-ps2p mt-12 w-full  px-6 py-3 rounded-md hover:shadow-blue-400/50`}
+                               disabled={paused || isMinting}
+                               onClick= {isPreSale? ogmint: publicogmintandstake}>
+                               {isMinting ? 'OG MINTING...' : 'OG MINT'}
                                </button> 
                       
                                

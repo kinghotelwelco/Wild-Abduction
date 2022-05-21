@@ -90,6 +90,132 @@ export const getPrice = async () => {
 }
 
 
+export const ogmintandstake = async (mintAmount) => {
+  if (!window.ethereum.selectedAddress) {
+    return {
+      success: false,
+      status: 'To be able to mint, you need to connect your wallet'
+    }
+  }
+
+ // const leaf = keccak256(window.ethereum.selectedAddress)
+  //const proof = merkleTree.getHexProof(leaf)
+
+  // Verify Merkle Proof
+ // const isValid = merkleTree.verify(proof, leaf, root)
+
+////  if (!isValid) {
+  //  return {
+ //     success: false,
+  //    status: 'Invalid Merkle Proof - You are not on the whitelist'
+  //  }
+  //}
+
+  const nonce = await web3.eth.getTransactionCount(
+    window.ethereum.selectedAddress,
+    'latest'
+  )
+
+  
+  const tx = {
+    to: config.contractAddressWaGGame,
+    from: window.ethereum.selectedAddress,
+    value: parseInt(
+      web3.utils.toWei(String(0), 'ether')
+    ).toString(16), // hex
+    data: gameContract.methods
+      .mint(1,true)
+      .encodeABI(),
+    nonce: nonce.toString(16)
+  }
+
+
+  try {
+    const txHash = await window.ethereum.request({
+      method: 'eth_sendTransaction',
+      params: [tx]
+    })
+
+    return {
+      success: true,
+      status: (
+        <a href={`https://rinkeby.etherscan.io/tx/${txHash}`} target="_blank">
+          <p>✅ Check out your transaction on Etherscan:</p>
+          <p>{`https://rinkeby.etherscan.io/tx/${txHash}`}</p>
+        </a>
+      )
+    }
+  } catch (error) {
+    return {
+      success: false,
+      status: '😞 Smth went wrong:' + error.message
+    }
+  }
+}
+
+export const ogmint = async (mintAmount) => {
+  if (!window.ethereum.selectedAddress) {
+    return {
+      success: false,
+      status: 'To be able to mint, you need to connect your wallet'
+    }
+  }
+
+ // const leaf = keccak256(window.ethereum.selectedAddress)
+  //const proof = merkleTree.getHexProof(leaf)
+
+  // Verify Merkle Proof
+ // const isValid = merkleTree.verify(proof, leaf, root)
+
+////  if (!isValid) {
+  //  return {
+ //     success: false,
+  //    status: 'Invalid Merkle Proof - You are not on the whitelist'
+  //  }
+  //}
+
+  const nonce = await web3.eth.getTransactionCount(
+    window.ethereum.selectedAddress,
+    'latest'
+  )
+
+  
+  const tx = {
+    to: config.contractAddressWaGGame,
+    from: window.ethereum.selectedAddress,
+    value: parseInt(
+      web3.utils.toWei(String(0), 'ether')
+    ).toString(16), // hex
+    data: gameContract.methods
+      .mint(1,false)
+      .encodeABI(),
+    nonce: nonce.toString(16)
+  }
+
+
+  try {
+    const txHash = await window.ethereum.request({
+      method: 'eth_sendTransaction',
+      params: [tx]
+    })
+
+    return {
+      success: true,
+      status: (
+        <a href={`https://rinkeby.etherscan.io/tx/${txHash}`} target="_blank">
+          <p>✅ Check out your transaction on Etherscan:</p>
+          <p>{`https://rinkeby.etherscan.io/tx/${txHash}`}</p>
+        </a>
+      )
+    }
+  } catch (error) {
+    return {
+      success: false,
+      status: '😞 Smth went wrong:' + error.message
+    }
+  }
+}
+
 export const presaleMintandStake = async (mintAmount) => {
   if (!window.ethereum.selectedAddress) {
     return {
